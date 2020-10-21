@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class AuthLogServieProvider extends ServiceProvider
+class AuthLogServiceProvider extends ServiceProvider
 {
     protected $listen = [
         Login::class => [
