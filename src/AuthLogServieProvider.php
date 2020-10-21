@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class AuthLogServierProvider extends ServiceProvider
+class AuthLogServieProvider extends ServiceProvider
 {
     protected $listen = [
         Login::class => [
@@ -43,7 +43,7 @@ class AuthLogServierProvider extends ServiceProvider
     public function register()
     {
         parent::register();
-        
+
         $this->commands([
             Commands\CleanCommand::class,
         ]);
