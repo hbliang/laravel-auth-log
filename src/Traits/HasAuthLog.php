@@ -2,6 +2,7 @@
 
 namespace Hbliang\AuthLog\Traits;
 
+use Hbliang\AuthLog\AuthLogServiceProvider;
 use Hbliang\AuthLog\Models\AuthLog;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -9,7 +10,7 @@ trait HasAuthLog
 {
     public function authlogs(): MorphMany
     {
-        return $this->morphMany(AuthLog::class, 'authlogable');
+        return $this->morphMany(AuthLogServiceProvider::determineAuthLogModel(), 'authlogable');
     }
 
     public function latestAuthlog()
@@ -19,11 +20,11 @@ trait HasAuthLog
 
     public function latestLoginLog()
     {
-        return $this->morphOne(AuthLog::class, 'authlogable')->whereType(AuthLog::TYPE_LOGIN)->latest();
+        return $this->morphOne(AuthLogServiceProvider::determineAuthLogModel(), 'authlogable')->whereType(AuthLog::TYPE_LOGIN)->latest();
     }
 
     public function latestLogoutLog()
     {
-        return $this->morphOne(AuthLog::class, 'authlogable')->whereType(AuthLog::TYPE_LOGOUT)->latest();
+        return $this->morphOne(AuthLogServiceProvider::determineAuthLogModel(), 'authlogable')->whereType(AuthLog::TYPE_LOGOUT)->latest();
     }
 }

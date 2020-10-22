@@ -2,6 +2,7 @@
 
 namespace Hbliang\AuthLog\Commands;
 
+use Hbliang\AuthLog\AuthLogServiceProvider;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Hbliang\AuthLog\Models\AuthLog;
@@ -21,7 +22,7 @@ class CleanCommand extends Command
 
         $cutOffDate = Carbon::now()->subDays($maxAgeInDays)->format('Y-m-d H:i:s');
 
-        $amountDeleted = AuthLog::where('created_at', '<', $cutOffDate)->delete();
+        $amountDeleted = AuthLogServiceProvider::determineAuthLogModel()::where('created_at', '<', $cutOffDate)->delete();
 
         $this->info("Deleted {$amountDeleted} record(s) from the activity log.");
 
