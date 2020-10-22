@@ -4,7 +4,7 @@
 `composer require hbliang/laravel-auth-log`
 
 ## Configuration
-`php artisan vendor:publish --provider="Hbliang\AuthLog\AuthLogogServiceProvider"`
+`php artisan vendor:publish --provider="Hbliang\AuthLog\AuthLogServiceProvider"`
 
 Migrate
 
