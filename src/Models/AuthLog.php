@@ -14,7 +14,7 @@ class AuthLog extends Model
         self::TYPE_LOGOUT => 'Logout',
     ];
 
-    protected $casts = [
+    protected $appends = [
         'type_name',
     ];
 
