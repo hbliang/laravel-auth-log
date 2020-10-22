@@ -5,7 +5,7 @@ namespace Hbliang\AuthLog\Listeners;
 use Hbliang\AuthLog\Contracts\AuthLogable;
 use Hbliang\AuthLog\Models\AuthLog;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 
 class LogLoggedout
 {
@@ -16,7 +16,7 @@ class LogLoggedout
         $this->request = $request;
     }
 
-    public function handle(Login $event)
+    public function handle(Logout $event)
     {
         $user = $event->user;
 
