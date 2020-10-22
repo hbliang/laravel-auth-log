@@ -2,6 +2,7 @@
 
 namespace Hbliang\AuthLog\Listeners;
 
+use Hbliang\AuthLog\AuthLogServiceProvider;
 use Hbliang\AuthLog\Contracts\AuthLogable;
 use Hbliang\AuthLog\Models\AuthLog;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class LogLoggedin
             return;
         }
 
-        $log = new AuthLog([
+        $log = AuthLogServiceProvider::getAuthLogInstance();
+        $log->fill([
             'ip' => $this->request->ip(),
             'type' => AuthLog::TYPE_LOGIN,
             'user_agent' => $this->request->userAgent(),

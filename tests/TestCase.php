@@ -3,7 +3,7 @@
 namespace Hbliang\AuthLog\Tests;
 
 use CreateAuthLogTable;
-use Hbliang\AuthLog\AuthLogServierProvider;
+use Hbliang\AuthLog\AuthLogServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
@@ -16,7 +16,7 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function getPackageProviders($app)
     {
-        return [AuthLogServierProvider::class];
+        return [AuthLogServiceProvider::class];
     }
 
     protected function getEnvironmentSetUp($app)

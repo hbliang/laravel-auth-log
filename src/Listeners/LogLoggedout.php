@@ -2,6 +2,7 @@
 
 namespace Hbliang\AuthLog\Listeners;
 
+use Hbliang\AuthLog\AuthLogServiceProvider;
 use Hbliang\AuthLog\Contracts\AuthLogable;
 use Hbliang\AuthLog\Models\AuthLog;
 use Illuminate\Http\Request;
@@ -24,11 +25,13 @@ class LogLoggedout
             return;
         }
 
-        $log = new AuthLog([
+        $log = AuthLogServiceProvider::getAuthLogInstance();
+        $log->fill([
             'ip' => $this->request->ip(),
             'type' => AuthLog::TYPE_LOGOUT,
             'user_agent' => $this->request->userAgent(),
         ]);
+
 
         $user->authlogs()->save($log);
     }

@@ -4,6 +4,7 @@ namespace Hbliang\AuthLog;
 
 use Hbliang\AuthLog\Listeners\LogLoggedin;
 use Hbliang\AuthLog\Listeners\LogLoggedout;
+use Hbliang\AuthLog\Models\AuthLog;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -47,5 +48,16 @@ class AuthLogServiceProvider extends ServiceProvider
         $this->commands([
             Commands\CleanCommand::class,
         ]);
+    }
+
+    public static function determineAuthLogModel()
+    {
+        return config('authlog.model') ?? AuthLog::class;
+    }
+
+    public static function getAuthLogInstance()
+    {
+        $class = self::determineAuthLogModel();
+        return new $class;
     }
 }
